@@ -8,4 +8,4 @@ https://zhl355.github.io/ICRA2020_RG_SDDM/
 https://arxiv.org/pdf/2005.06694.pdf
 
 
-## Code will be available at the end of 2020.
+## Code will be open-source at the end of 2020.
