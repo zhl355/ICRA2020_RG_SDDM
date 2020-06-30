@@ -1,0 +1,46 @@
+FROM ubuntu:18.04
+
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+
+# install basics
+RUN apt-get update -y \
+ && apt-get install -y apt-utils git curl ca-certificates bzip2 cmake tree htop bmon iotop g++ \
+ && apt-get install -y libglib2.0-0 libsm6 libxext6 libxrender-dev
+
+# Install Miniconda
+RUN curl -so /miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+ && chmod +x /miniconda.sh \
+ && /miniconda.sh -b -p /miniconda \
+ && rm /miniconda.sh
+
+ENV PATH=/miniconda/bin:$PATH
+
+# Create a Python 3.6 environment
+RUN /miniconda/bin/conda install -y conda-build \
+ && /miniconda/bin/conda create -y --name rg_sddm python=3.6.7 \
+ && /miniconda/bin/conda clean -ya
+
+ENV CONDA_DEFAULT_ENV=rg_sddm
+ENV CONDA_PREFIX=/miniconda/envs/$CONDA_DEFAULT_ENV
+ENV PATH=$CONDA_PREFIX/bin:$PATH
+ENV CONDA_AUTO_UPDATE_CONDA=false
+
+RUN conda install -c conda-forge scikit-image shapely rtree pyembree \
+    && conda install -c mosek mosek \
+    && conda install scipy matplotlib nose \
+    && conda install -c anaconda spyder \
+    && conda clean -ya
+
+RUN pip install cvxpy trimesh[all] vtkplotter==2019.4.4
+
+# Download the code and compile.
+RUN apt install -y libeigen3-dev libboost-dev
+RUN cd / && git clone -b code git clone -b code https://github.com/zhl355/ICRA2020_RG_SDDM.git
+RUN cd /ICRA2020_RG_SDDM/astar_py/ \
+    && mkdir build \
+    && cd build \
+    && cmake -DPYTHON_EXECUTABLE=/miniconda/envs/rg_sddm/bin/python .. \
+    && make \
+    && mv ../lib/*.so /ICRA2020_RG_SDDM/src/mylib
+
+WORKDIR /

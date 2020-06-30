@@ -19,13 +19,14 @@ The code is test on `Ubuntu 16.04/18.04 LTS` on a desktop computer (Intel i7-870
 
 To replicate the testing environment, we recommend using `Anaconda` to create
 a virtual environment as follows. For both approaches, you need to obtain a
-**MOSEK solver license** (Academic free license) and install it properly according to
-replied email.
+**MOSEK solver license** (Academic free license) and install it properly according to the instruction you received with the license. 
 
 ### Use Docker
 
+```sh
 docker build -t rg_sddm -f Dockerfile-RG_SDDM ./
 docker run -it --rm rg_sddm
+```
 
 ### Mannual setup
 
@@ -78,7 +79,7 @@ Run all codes within `src` folder. All log files are save in `log` folder and al
     python main_dense_unknown.py
     ```
 
-* Create and Display 3D video for dense environment simulation.[about 1.5 minutes]
+* Create and Display 3D video for dense environment simulation.[about 1.5 minutes]. It is not easy to run this using Docker.
 
   ```py
   python main_dense_video3D.py

@@ -696,7 +696,7 @@ class RgsEnv:
 
 # %% Modlue Test for 2D Top-view visualization
 if __name__ == '__main__':
-    mesh_JZ = trimesh.load_mesh('mesh/dense_env.stl')
+    mesh_JZ = trimesh.load_mesh('../mesh/dense_env.stl')
     ls = LaserSim()
     start = np.array([1, 0.75])
     goal = np.array([18, 4])
