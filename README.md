@@ -103,5 +103,15 @@ Run all codes within `src` folder. All log files are save in `log` folder and al
 
 If you find the ideas and code implementation are useful for your own work, please check out the following papers and cite the appropriate ones:
 
-* Reference Governor + SDDM on simplified dynamics [ICRA 2020 Prepint](https://arxiv.org/abs/2002.02038)
-* Referene Governor on stochastic nonlinear system [New extension on ArXiv](https://arxiv.org/pdf/2005.06694.pdf)
+* Reference Governor + SDDM on simplified dynamics [[pdf]](https://arxiv.org/abs/2002.02038)
+
+  ```txt
+    @inproceedings{Li_SafeControl_ICRA20,
+      author = {Z. Li and Ö. Arslan and N. Atanasov},
+      title = {Fast and Safe Path-Following Control using a State-Dependent Directional Metric},
+      booktitle = {IEEE Int. Conf. on Robotics and Automation (ICRA)},
+      year = {2020}
+    }
+  ```
+
+* Referene Governor on stochastic nonlinear system [[pdf]](https://arxiv.org/pdf/2005.06694.pdf)
