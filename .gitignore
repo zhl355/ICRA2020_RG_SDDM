@@ -8,3 +8,4 @@
 sim_figs/**/*.png
 sim_figs/**/*.pdf
 sim_figs/
+.idea/

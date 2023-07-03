@@ -106,7 +106,7 @@ def listmin(mylist):
     """ Find minimum and correspondint index given a list,
     if they are multiple min value elements in the list, take the 1st one.
     """
-    dist_arr = np.array(mylist, dtype=np.float)
+    dist_arr = np.array(mylist, dtype=float)
     min_idx_arr = np.argmin(dist_arr)
     if min_idx_arr.size > 1:
         min_idx = min_idx_arr[0]
