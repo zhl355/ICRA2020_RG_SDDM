@@ -39,9 +39,20 @@ def pressQ_to_exist():
         pass
     return 0
 
+# def save_fig_to_folder(fig, folder, fname, dpi=300, ftype_ext='.png'):
+#     """ Save figure to specified location (create folder if it does not exist)
+#     """
+#     if not os.path.exists(folder):
+#         os.makedirs(folder)
+#
+#     figname_full = os.path.join(folder, fname + ftype_ext)
+#     fig.savefig(figname_full, dpi=dpi, bbox_inches='tight')
+#     return 0
+
 def save_fig_to_folder(fig, folder, fname, dpi=300, ftype_ext='.png'):
     """ Save figure to specified location (create folder if it does not exist)
     """
+    fig.tight_layout()
     if not os.path.exists(folder):
         os.makedirs(folder)
 

@@ -32,7 +32,8 @@ def vis_norm(wall_star, unit_dist_patch, tstr, figname, xc=np.zeros(2)):
     ax.plot([-1, 3], [-2, 2], lw=5, color='brown')
 
     # closet pt in Q-norm
-    ax.plot(wall_star[0], wall_star[1], 's', color='blue')
+    # ax.plot(wall_star[0], wall_star[1], 's',  color='blue')
+    ax.scatter(wall_star[0], wall_star[1], s=100, marker='s', c='blue', zorder=10)
     ax.add_patch(unit_dist_patch)
 
     # velocity arrow indicator
@@ -40,16 +41,17 @@ def vis_norm(wall_star, unit_dist_patch, tstr, figname, xc=np.zeros(2)):
     dx, dy = np.array([1, 1]) * arrow_scale
     vel_arrow = mp.Arrow(xc[0], xc[1], dx, dy, color='green', width=0.2)
     ax.add_patch(vel_arrow)
-    ax.set_title(tstr, fontsize=20)
+    # ax.set_title(tstr, fontsize=20)
     ax.grid()
     ax.axis('equal')
     ax.axis([-2, 2, -2, 2])
 
-    plt.setp(ax.get_yticklabels(), visible=False)
-    ax.tick_params(axis='both', which='both', length=0)
+    # plt.setp(ax.get_yticklabels(), visible=False)
+    # ax.tick_params(axis='both', which='both', length=0.1)
 
     folder = './sim_figs/summary'
-    save_fig_to_folder(fig, folder, figname)
+    save_fig_to_folder(fig, folder, figname, ftype_ext='.pdf')
+    save_fig_to_folder(fig, folder, figname, ftype_ext='.png')
     # plt.show()
     return fig, ax
 
@@ -98,6 +100,9 @@ if __name__ == '__main__':
     tstr_rot0 = 'Q-Dist. to wall %.2f' % dist2wall_rot0
     tstr_rot45 = 'Q-Dist. to wall %.2f' % dist2wall_rot45
 
-    vis_norm(wall_star_ball, ball_patch, tstr_ball, 'norm_comp_ball.png')
-    vis_norm(wall_star_rot0, ellipse_patch0, tstr_rot0, 'norm_comp_rot0.png')
-    vis_norm(wall_star_rot45, ellipse_patch45, tstr_rot45, 'norm_comp_rot45.png')
+    vis_norm(wall_star_ball, ball_patch, tstr_ball, 'norm_comp_ball')
+    vis_norm(wall_star_rot0, ellipse_patch0, tstr_rot0, 'norm_comp_rot0')
+
+    if wall_star_rot45[0] > 0:
+        wall_star_rot45 = -wall_star_rot45
+    vis_norm(wall_star_rot45, ellipse_patch45, tstr_rot45, 'norm_comp_rot45')
